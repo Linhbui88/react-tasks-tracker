@@ -1,24 +1,46 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import { FaPlusSquare } from "react-icons/fa";
+import { v4 as uuidv4 } from 'uuid';
+import TaskList from './components/TaskList';
+import Task from './components/Task';
 import './App.css';
 
 function App() {
+  const [textInput, setTextInput] = useState("")
+  const [tasks, setTasks] = useState([])
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    setTasks([
+      ...tasks, {text: textInput, completed:false, id: uuidv4()}
+    ]);
+    setTextInput("");
+   }
+   console.log(tasks)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Linh's Tasks Tracker</h1>
+      <form>
+        <input 
+          type="text" 
+          placeholder="task" 
+          value={textInput} 
+          onChange={(e) => setTextInput(e.target.value)} 
+        />
+        <button type="submit" onClick={handleSubmit}>
+          <FaPlusSquare />
+        </button>
+      
+          <select>
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Uncompleted</option>
+          </select>
+      </form>
+      <TaskList tasks={tasks} setTasks={setTasks} />
     </div>
+  
+
   );
 }
 
