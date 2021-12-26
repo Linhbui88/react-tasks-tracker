@@ -1,17 +1,19 @@
 import {useState} from 'react';
 import { FaPlusSquare } from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid';
 
 const TaskForm = ({ inputText, setInputText,tasks, setTasks,}) => {
  
   const handleSubmit = (e) =>{
     e.preventDefault()
-    setTasks([...tasks, {text:inputText, isCompleted: false}])
+    if(!inputText) return
+    setTasks([...tasks, {text:inputText, id: uuidv4(), isCompleted: false}])
     setInputText("")
   }
 
   return (
 
-    <div>
+    <div className= "mb-2">
       <form>
         <input 
           type="text" 

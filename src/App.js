@@ -9,16 +9,14 @@ function App() {
   const [tasks, setTasks] = useState([])
   
    return (
-    <div className="App">
+    <div className="App d-flex align-items-center">
       <h1>Linh's Tasks Tracker</h1>
-      <div>
-        
-        <TaskForm  inputText={inputText} setInputText={setInputText} tasks={tasks}  setTasks={setTasks}/>
-        {tasks.map(task =>(
-          <Task key={uuidv4()} task={task} setTasks={setTasks}/>
-        ))}
+    
+      <TaskForm  inputText={inputText} setInputText={setInputText} tasks= {tasks}  setTasks={setTasks} />
 
-      </div>
+      {tasks.map(task =>(
+        <Task key={uuidv4()} task={task} tasks={tasks} setTasks={setTasks}/>
+      ))}
     </div>
   
 
