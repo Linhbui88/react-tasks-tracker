@@ -1,43 +1,24 @@
 import { useState } from "react";
-import { FaPlusSquare } from "react-icons/fa";
 import { v4 as uuidv4 } from 'uuid';
-import TaskList from './components/TaskList';
+import TaskForm from "./components/TaskForm";
 import Task from './components/Task';
 import './App.css';
 
 function App() {
-  const [textInput, setTextInput] = useState("")
+  const [inputText, setInputText] = useState("")
   const [tasks, setTasks] = useState([])
-
-  const handleSubmit = (e) =>{
-    e.preventDefault()
-    setTasks([
-      ...tasks, {text: textInput, completed:false, id: uuidv4()}
-    ]);
-    setTextInput("");
-   }
-   console.log(tasks)
-  return (
+  
+   return (
     <div className="App">
       <h1>Linh's Tasks Tracker</h1>
-      <form>
-        <input 
-          type="text" 
-          placeholder="task" 
-          value={textInput} 
-          onChange={(e) => setTextInput(e.target.value)} 
-        />
-        <button type="submit" onClick={handleSubmit}>
-          <FaPlusSquare />
-        </button>
-      
-          <select>
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="uncompleted">Uncompleted</option>
-          </select>
-      </form>
-      <TaskList tasks={tasks} setTasks={setTasks} />
+      <div>
+        
+        <TaskForm  inputText={inputText} setInputText={setInputText} tasks={tasks}  setTasks={setTasks}/>
+        {tasks.map(task =>(
+          <Task key={uuidv4()} task={task} setTasks={setTasks}/>
+        ))}
+
+      </div>
     </div>
   
 
