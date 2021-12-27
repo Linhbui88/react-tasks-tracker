@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   const [inputText, setInputText] = useState("")
-  const [tasks, setTasks] = useState(() => JSON.parse(localStorage.getItem("tasks")))
+  const [tasks, setTasks] = useState(()=> JSON.parse(localStorage.getItem('tasks')) || [])
   const [status, setStatus] = useState('all')
   const [filteredTasks, setFilteredTasks] = useState([])
 
@@ -45,6 +45,7 @@ function App() {
       {filteredTasks.map(task =>(
         <Task key={uuidv4()} task={task} tasks={tasks} setTasks={setTasks}/>
       ))}
+    
     </div>
   
 
