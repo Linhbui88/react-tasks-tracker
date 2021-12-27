@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import { FaPlusSquare } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 

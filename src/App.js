@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import TaskForm from "./components/TaskForm";
 import Task from './components/Task';
@@ -6,7 +6,11 @@ import './App.css';
 
 function App() {
   const [inputText, setInputText] = useState("")
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => JSON.parse(localStorage.getItem("tasks")))
+
+  useEffect(() =>{
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks])
   
    return (
     <div className="App d-flex align-items-center">
