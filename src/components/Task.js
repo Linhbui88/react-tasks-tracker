@@ -1,4 +1,4 @@
-import {FaCheckSquare, FaTrashAlt} from 'react-icons/fa'
+import {FaCheck, FaTrashAlt} from 'react-icons/fa'
 
 
 const Task = ({task,tasks, setTasks}) => {
@@ -26,8 +26,24 @@ const Task = ({task,tasks, setTasks}) => {
       {task.text}
       </div>
       <div className='d-flex flex-row'>
-        <button onClick={handleCompleteTask}><FaCheckSquare /></button>
-        <button onClick={handleRemoveTask}><FaTrashAlt /></button>
+        <button 
+        onClick={handleCompleteTask} 
+        style={{
+          backgroundColor: "White", 
+          color:"#fcb045",
+          border: "none"}}
+        >
+          <FaCheck/>
+        </button>
+        <button 
+        onClick={handleRemoveTask} 
+        style={{
+          backgroundColor: "white", 
+          color:"#f05454",
+          border: "none"}}
+        >
+          <FaTrashAlt />
+        </button>
       </div>
     </div>
     
